@@ -11,27 +11,19 @@ class ViewController: UIViewController {
 
     private let tableView = UITableView()
 
-    let cardInfo = [
-        Card(progress: "51", header: "Level 1", subheader: "Basic", bgImage: UIImage(named: "level1")),
-        Card(progress: "10", header: "Level 2", subheader: "Basic", bgImage: UIImage(named: "level2")),
-        Card(progress: "3", header: "Level 3", subheader: "Basic", bgImage: UIImage(named: "level3")),
-        Card(progress: "1", header: "Level 4", subheader: "Basic", bgImage: UIImage(named: "level4")),
-        Card(progress: "1", header: "Level 5", subheader: "Basic", bgImage: UIImage(named: "level5"))
-    ]
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Course content"
-        let userButton = UIBarButtonItem(image: UIImage(named: "avatar")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(userButtonTapped))
+
+        let userButton = UIBarButtonItem(image: UIImage(systemName: "person.circle"), style: .plain, target: self, action: #selector(userButtonTapped))
+        userButton.tintColor = UIColor(hex: "677FFF")
         navigationItem.rightBarButtonItem = userButton
-//        navigationController?.navigationBar.prefersLargeTitles = true
-//        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
+
         tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.reuseIdentifier)
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
-
         setConstraints()
     }
 
@@ -63,6 +55,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath) as? TableViewCell else {
             return UITableViewCell()
         }
+
         cell.selectionStyle = .none
         cell.headerLabel.text = cardInfo[indexPath.row].header
         cell.subheaderLabel.text = cardInfo[indexPath.row].subheader
@@ -70,8 +63,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let result = Double(cardInfo[indexPath.row].progress) ?? 0.0 / 100.0
         cell.progressLabel.text = cardInfo[indexPath.row].progress + "%"
         cell.progressView.progress = Float(result/100)
-        return cell
-    }
 
+        if indexPath.row != 0 {
+            cell.iconImageView.image = UIImage(named: "padlock")
+            cell.separatorView.backgroundColor = .systemGray
+        }
+        return cell
+
+    }
 }
 
