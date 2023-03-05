@@ -55,6 +55,7 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         cardInfo.count
     }
@@ -71,6 +72,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.progressLabel.text = cardInfo[indexPath.row].progress + "%"
         cell.progressView.progress = Float(result/100)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            let quizVc = QuizViewController()
+            navigationController?.pushViewController(quizVc, animated: true)
+        default:
+            print("Something wrong")
+        }
     }
 
 }
