@@ -24,7 +24,21 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
+        
         setConstraints()
+        addTabBar()
+
+    }
+
+    private func addTabBar() {
+        let tabBarController = TabBarController()
+        let tabBarHeight = tabBarController.tabBar.frame.size.height
+        let tabBarY = view.frame.size.height - tabBarHeight
+        let tabBarFrame = CGRect(x: 0, y: tabBarY, width: view.frame.size.width, height: tabBarHeight)
+        tabBarController.view.frame = tabBarFrame
+        addChild(tabBarController)
+        view.addSubview(tabBarController.view)
+        tabBarController.didMove(toParent: self)
     }
 
     private func setConstraints() {

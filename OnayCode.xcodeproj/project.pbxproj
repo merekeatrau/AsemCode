@@ -15,6 +15,7 @@
 		065E4CF429B4AFE2004C6FCE /* OnayCode.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 065E4CF229B4AFE2004C6FCE /* OnayCode.xcdatamodeld */; };
 		065E4CF629B4AFE3004C6FCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 065E4CF529B4AFE3004C6FCE /* Assets.xcassets */; };
 		065E4CF929B4AFE3004C6FCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 065E4CF729B4AFE3004C6FCE /* LaunchScreen.storyboard */; };
+		0661235C29B533270077CAAF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0661235B29B533270077CAAF /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		065E4CF529B4AFE3004C6FCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		065E4CF829B4AFE3004C6FCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		065E4CFA29B4AFE3004C6FCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0661235B29B533270077CAAF /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				065E4CF229B4AFE2004C6FCE /* OnayCode.xcdatamodeld */,
 				060ED88A29B4B37C0086A253 /* TableViewCell.swift */,
 				060ED88C29B4BF190086A253 /* CardEntity.swift */,
+				0661235B29B533270077CAAF /* TabBarController.swift */,
 			);
 			path = OnayCode;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 				065E4CEE29B4AFE2004C6FCE /* ViewController.swift in Sources */,
 				065E4CEA29B4AFE2004C6FCE /* AppDelegate.swift in Sources */,
 				065E4CEC29B4AFE2004C6FCE /* SceneDelegate.swift in Sources */,
+				0661235C29B533270077CAAF /* TabBarController.swift in Sources */,
 				060ED88D29B4BF190086A253 /* CardEntity.swift in Sources */,
 				065E4CF429B4AFE2004C6FCE /* OnayCode.xcdatamodeld in Sources */,
 			);
