@@ -11,6 +11,13 @@ class ViewController: UIViewController {
 
     private let tableView = UITableView()
 
+    let cardInfo = [
+        Card(progress: "51", header: "Level 1", subheader: "Basic", bgImage: UIImage(named: "level1")),
+        Card(progress: "10", header: "Level 2", subheader: "Basic", bgImage: UIImage(named: "level2")),
+        Card(progress: "3", header: "Level 3", subheader: "Basic", bgImage: UIImage(named: "level3")),
+        Card(progress: "1", header: "Level 4", subheader: "Basic", bgImage: UIImage(named: "level4"))
+    ]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -47,17 +54,21 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
-
+        cardInfo.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath) as? TableViewCell else {
             return UITableViewCell()
         }
+        cell.headerLabel.text = cardInfo[indexPath.row].header
+        cell.subheaderLabel.text = cardInfo[indexPath.row].subheader
+        cell.backgroundImageView.image = cardInfo[indexPath.row].bgImage
+        let result = Double(cardInfo[indexPath.row].progress) ?? 0.0 / 100.0
+        cell.progressLabel.text = cardInfo[indexPath.row].progress + "%"
+        cell.progressView.progress = Float(result/100)
         return cell
     }
-
 
 }
 

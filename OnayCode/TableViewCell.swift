@@ -16,7 +16,6 @@ class TableViewCell: UITableViewCell {
         imageView.layer.cornerRadius = 12
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "level1")
         return imageView
     }()
 
@@ -36,7 +35,6 @@ class TableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .white
-        label.text = "Level 1"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -45,7 +43,6 @@ class TableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textColor = .white
-        label.text = "50%"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -81,10 +78,9 @@ class TableViewCell: UITableViewCell {
         contentView.addSubview(backgroundImageView)
         backgroundImageView.addSubview(labelStackView)
         backgroundImageView.addSubview(progressStackView)
-
+        backgroundImageView.addSubview(progressView)
         labelStackView.addArrangedSubview(headerLabel)
         labelStackView.addArrangedSubview(subheaderLabel)
-        backgroundImageView.addSubview(progressView)
         progressStackView.addArrangedSubview(progressView)
         progressStackView.addArrangedSubview(progressLabel)
 
@@ -93,7 +89,6 @@ class TableViewCell: UITableViewCell {
             backgroundImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             backgroundImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             backgroundImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-
 
             labelStackView.leadingAnchor.constraint(equalTo: backgroundImageView.leadingAnchor, constant: 16),
             labelStackView.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor, constant: -16),
@@ -110,7 +105,4 @@ class TableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setBackgroundImage(_ image: UIImage?) {
-        backgroundImageView.image = image
-    }
 }
