@@ -85,5 +85,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
 
     }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            let quizVc = QuizViewController()
+            navigationController?.pushViewController(quizVc, animated: true)
+        default:
+            print("Something wrong")
+        }
+    }
 }
 

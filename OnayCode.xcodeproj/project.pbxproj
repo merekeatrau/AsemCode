@@ -16,6 +16,10 @@
 		065E4CF629B4AFE3004C6FCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 065E4CF529B4AFE3004C6FCE /* Assets.xcassets */; };
 		065E4CF929B4AFE3004C6FCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 065E4CF729B4AFE3004C6FCE /* LaunchScreen.storyboard */; };
 		0661235C29B533270077CAAF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0661235B29B533270077CAAF /* TabBarController.swift */; };
+		5839926029B720370069583B /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5839925F29B720370069583B /* QuizViewController.swift */; };
+		5839926229B720490069583B /* QuizTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5839926129B720490069583B /* QuizTableViewCell.swift */; };
+		5839926429B720760069583B /* QuizHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5839926329B720760069583B /* QuizHeader.swift */; };
+		5839926729B7229E0069583B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5839926629B7229E0069583B /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,9 @@
 		065E4CF829B4AFE3004C6FCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		065E4CFA29B4AFE3004C6FCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0661235B29B533270077CAAF /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		5839925F29B720370069583B /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
+		5839926129B720490069583B /* QuizTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizTableViewCell.swift; sourceTree = "<group>"; };
+		5839926329B720760069583B /* QuizHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5839926729B7229E0069583B /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +70,7 @@
 		065E4CE829B4AFE2004C6FCE /* OnayCode */ = {
 			isa = PBXGroup;
 			children = (
+				5839925E29B7200F0069583B /* Quiz */,
 				065E4CFA29B4AFE3004C6FCE /* Info.plist */,
 				065E4D0029B4B06D004C6FCE /* Application */,
 				065E4CED29B4AFE2004C6FCE /* ViewController.swift */,
@@ -92,6 +101,16 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
+		5839925E29B7200F0069583B /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				5839925F29B720370069583B /* QuizViewController.swift */,
+				5839926129B720490069583B /* QuizTableViewCell.swift */,
+				5839926329B720760069583B /* QuizHeader.swift */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -108,6 +127,9 @@
 			dependencies = (
 			);
 			name = OnayCode;
+			packageProductDependencies = (
+				5839926629B7229E0069583B /* SnapKit */,
+			);
 			productName = OnayCode;
 			productReference = 065E4CE629B4AFE2004C6FCE /* OnayCode.app */;
 			productType = "com.apple.product-type.application";
@@ -136,6 +158,9 @@
 				Base,
 			);
 			mainGroup = 065E4CDD29B4AFE2004C6FCE;
+			packageReferences = (
+				5839926529B7229E0069583B /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 065E4CE729B4AFE2004C6FCE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -165,10 +190,13 @@
 				060ED88B29B4B37C0086A253 /* TableViewCell.swift in Sources */,
 				065E4CEE29B4AFE2004C6FCE /* ViewController.swift in Sources */,
 				065E4CEA29B4AFE2004C6FCE /* AppDelegate.swift in Sources */,
+				5839926029B720370069583B /* QuizViewController.swift in Sources */,
 				065E4CEC29B4AFE2004C6FCE /* SceneDelegate.swift in Sources */,
 				0661235C29B533270077CAAF /* TabBarController.swift in Sources */,
 				060ED88D29B4BF190086A253 /* CardEntity.swift in Sources */,
+				5839926429B720760069583B /* QuizHeader.swift in Sources */,
 				065E4CF429B4AFE2004C6FCE /* OnayCode.xcdatamodeld in Sources */,
+				5839926229B720490069583B /* QuizTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +404,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5839926529B7229E0069583B /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5839926629B7229E0069583B /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5839926529B7229E0069583B /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		065E4CF229B4AFE2004C6FCE /* OnayCode.xcdatamodeld */ = {
