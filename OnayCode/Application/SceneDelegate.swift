@@ -12,11 +12,44 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowScene)
-        let navController = UINavigationController(rootViewController: ViewController())
 
-        window?.rootViewController = navController
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+
+        let tabBarController = UITabBarController()
+
+        let homeVC = ViewController()
+        homeVC.title = "Course content"
+        let homeNav = UINavigationController(rootViewController: homeVC)
+        homeNav.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
+
+        let mediaVC = UIViewController()
+        mediaVC.title = "Media"
+        mediaVC.view.backgroundColor = .systemGreen
+        let mediaNav = UINavigationController(rootViewController: mediaVC)
+        mediaNav.tabBarItem = UITabBarItem(title: "Media", image: UIImage(systemName: "photo"), tag: 1)
+
+        let coursesVC = UIViewController()
+        coursesVC.title = "Courses"
+        coursesVC.view.backgroundColor = .systemBlue
+        let coursesNav = UINavigationController(rootViewController: coursesVC)
+        coursesNav.tabBarItem = UITabBarItem(title: "Courses", image: UIImage(systemName: "book"), tag: 2)
+
+        let leadersVC = UIViewController()
+        leadersVC.title = "Leaders"
+        leadersVC.view.backgroundColor = .systemMint
+        let leadersNav = UINavigationController(rootViewController: leadersVC)
+        leadersNav.tabBarItem = UITabBarItem(title: "Leaders", image: UIImage(systemName: "person.2.square.stack"), tag: 3)
+
+        let profileVC = UIViewController()
+        profileVC.title = "Profile"
+        profileVC.view.backgroundColor = .systemTeal
+        let profileNav = UINavigationController(rootViewController: profileVC)
+        profileNav.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), tag: 4)
+
+        tabBarController.viewControllers = [homeNav, mediaNav, coursesNav, leadersNav, profileNav]
+
+        window = UIWindow(windowScene: windowScene)
+        window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }
 

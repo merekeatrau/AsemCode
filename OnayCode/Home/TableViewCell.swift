@@ -119,30 +119,27 @@ class TableViewCell: UITableViewCell {
         stackView.addArrangedSubview(shapeStackview)
         stackView.addArrangedSubview(backgroundImageView)
         selectionStyle = .none
-        let padding: CGFloat = 16.0
 
         shapeStackview.snp.makeConstraints {
             $0.width.equalTo(16)
         }
 
         labelStackView.snp.makeConstraints { make in
-            make.leading.equalTo(backgroundImageView.snp.leading).offset(padding)
-            make.trailing.equalTo(backgroundImageView.snp.trailing).offset(-padding)
-            make.bottom.equalTo(backgroundImageView.snp.bottom).offset(-padding)
+            make.leading.equalTo(backgroundImageView.snp.leading).offset(16)
+            make.trailing.equalTo(backgroundImageView.snp.trailing).offset(-16)
+            make.bottom.equalTo(backgroundImageView.snp.bottom).offset(-16)
         }
 
         progressStackView.snp.makeConstraints { make in
-            make.top.equalTo(backgroundImageView.snp.top).offset(padding)
-            make.leading.equalTo(backgroundImageView.snp.leading).offset(padding)
-            make.trailing.equalTo(backgroundImageView.snp.trailing).offset(-padding)
+            make.top.equalTo(backgroundImageView.snp.top).offset(16)
+            make.leading.equalTo(backgroundImageView.snp.leading).offset(16)
+            make.trailing.equalTo(backgroundImageView.snp.trailing).offset(-16)
         }
 
         stackView.snp.makeConstraints { make in
-            make.top.equalTo(contentView.snp.top)
-            make.leading.equalTo(contentView.snp.leading).offset(padding)
-            make.trailing.equalTo(contentView.snp.trailing).offset(-padding)
-            make.bottom.equalTo(contentView.snp.bottom).offset(-padding)
+            make.edges.equalTo(contentView).inset(UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16))
         }
+
     }
 
     func config(with cardInfo: Card, isFirstCell: Bool) {
