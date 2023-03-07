@@ -23,6 +23,7 @@ class QuizViewController: UIViewController {
         tableView.backgroundColor = #colorLiteral(red: 0.9607843757, green: 0.9607843757, blue: 0.9607843757, alpha: 1)
         tableView.register(QuizHeader.self, forHeaderFooterViewReuseIdentifier: QuizHeader.identifier)
         tableView.register(QuizTableViewCell.self, forCellReuseIdentifier: QuizTableViewCell.identifier)
+        tableView.separatorStyle = .none
         return tableView
     }()
     

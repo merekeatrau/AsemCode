@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class TableViewCell: UITableViewCell {
 
@@ -15,26 +16,21 @@ class TableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 12
         imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
     let iconImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "circle"))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.widthAnchor.constraint(equalToConstant: 16).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 16).isActive = true
-//        imageView.backgroundColor = .systemBlue
         return imageView
     }()
 
     let separatorView: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.lightGray
         view.heightAnchor.constraint(equalToConstant: 120).isActive = true
         view.widthAnchor.constraint(equalToConstant: 1).isActive = true
-        view.backgroundColor = UIColor(hex: "677FFF")
         view.layer.cornerRadius = 1
         view.clipsToBounds = true
         return view
@@ -44,7 +40,6 @@ class TableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -53,7 +48,6 @@ class TableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .white
         label.text = "Basic"
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -61,7 +55,6 @@ class TableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -72,7 +65,6 @@ class TableViewCell: UITableViewCell {
         progressView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         progressView.layer.cornerRadius = 4
         progressView.clipsToBounds = true
-        progressView.translatesAutoresizingMaskIntoConstraints = false
         progressView.heightAnchor.constraint(equalToConstant: 8).isActive = true
         return progressView
     }()
@@ -81,7 +73,6 @@ class TableViewCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 8
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
 
@@ -89,7 +80,6 @@ class TableViewCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 2
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
 
@@ -98,7 +88,6 @@ class TableViewCell: UITableViewCell {
         stackView.axis = .horizontal
         stackView.alignment = .fill
         stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
 
@@ -107,13 +96,13 @@ class TableViewCell: UITableViewCell {
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.spacing = 0
-//        stackView.backgroundColor = .systemCyan
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        contentView.addSubview(stackView)
 
         backgroundImageView.addSubview(labelStackView)
         backgroundImageView.addSubview(progressStackView)
@@ -129,37 +118,59 @@ class TableViewCell: UITableViewCell {
 
         stackView.addArrangedSubview(shapeStackview)
         stackView.addArrangedSubview(backgroundImageView)
-//        stackView.backgroundColor = .systemRed
+        selectionStyle = .none
+        let padding: CGFloat = 16.0
 
-        contentView.addSubview(stackView)
+        shapeStackview.snp.makeConstraints {
+            $0.width.equalTo(16)
+        }
 
-        NSLayoutConstraint.activate([
-            shapeStackview.widthAnchor.constraint(equalToConstant: 16),
+        labelStackView.snp.makeConstraints { make in
+            make.leading.equalTo(backgroundImageView.snp.leading).offset(padding)
+            make.trailing.equalTo(backgroundImageView.snp.trailing).offset(-padding)
+            make.bottom.equalTo(backgroundImageView.snp.bottom).offset(-padding)
+        }
 
-            labelStackView.leadingAnchor.constraint(equalTo: backgroundImageView.leadingAnchor, constant: 16),
-            labelStackView.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor, constant: -16),
-            labelStackView.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -16),
+        progressStackView.snp.makeConstraints { make in
+            make.top.equalTo(backgroundImageView.snp.top).offset(padding)
+            make.leading.equalTo(backgroundImageView.snp.leading).offset(padding)
+            make.trailing.equalTo(backgroundImageView.snp.trailing).offset(-padding)
+        }
 
-            progressStackView.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 16),
-            progressStackView.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor, constant: -16),
-            progressStackView.leadingAnchor.constraint(equalTo: backgroundImageView.leadingAnchor, constant: 16),
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(contentView.snp.top)
+            make.leading.equalTo(contentView.snp.leading).offset(padding)
+            make.trailing.equalTo(contentView.snp.trailing).offset(-padding)
+            make.bottom.equalTo(contentView.snp.bottom).offset(-padding)
+        }
+    }
 
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor)
-        ])
+    func config(with cardInfo: Card, isFirstCell: Bool) {
+        headerLabel.text = cardInfo.header
+        subheaderLabel.text = cardInfo.subheader
+        backgroundImageView.image = cardInfo.bgImage
+        let result = Double(cardInfo.progress) ?? 0.0 / 100.0
+        progressLabel.text = cardInfo.progress + "%"
+        progressView.progress = Float(result / 100)
+
+        if isFirstCell {
+            iconImageView.image = UIImage(named: "circle")
+            separatorView.backgroundColor = UIColor(hex: "677FFF")
+        } else {
+            iconImageView.image = UIImage(named: "padlock")
+            separatorView.backgroundColor = .systemGray
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
+
 extension UIColor {
     convenience init(hex: String) {
         let scanner = Scanner(string: hex)
-        scanner.scanLocation = 0
+        scanner.currentIndex = hex.startIndex
 
         var rgbValue: UInt64 = 0
 
@@ -172,3 +183,4 @@ extension UIColor {
         self.init(red: CGFloat(r) / 0xFF, green: CGFloat(g) / 0xFF, blue: CGFloat(b) / 0xFF, alpha: 1)
     }
 }
+
